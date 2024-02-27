@@ -1,0 +1,121 @@
+﻿@model MMTracker.Models.Machine_RunningViewModel
+@{
+    ViewData["Title"] = "Machine Running List";
+}
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+
+            <div class="row">
+                @*===================*@
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h4 style="float:left" class="modal-title"><strong>Machine Running</strong></h4>
+                    </div>
+                </div>
+                <div id="myModal" class="modal fade" role="dialog" tabindex='-1'>
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><i class="ft-user"></i> Machine Running</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="projectinput8">Machine</label>
+                                                <select id="ddlMachine" class="form-control">
+                                                    <option value="-1">---Select---</option>
+                                                    @foreach (var item in Model.MachineList)
+                                                    {
+                                                        <option value="@item.MachineId">
+                                                            @item.MachineId
+                                                        </option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Days Run</label>
+                                                    <input type="text" id="txtDaysRun" class="form-control">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="projectinput1">Hours Run</label>
+                                                    <input type="text" id="txtHoursRun" class="form-control">
+                                                </div>
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="projectinput1">Qty produced</label>
+                                                <input type="text" id="txtQtyProduced" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">Close</button>
+                                    <button type="button" id="btnSaveMachineRunning" class="btn btn-primary" onclick="saveMachineRunning()">
+                                        <i class="la la-check-square-o"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @*================*@
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <button type="button" id="btnAddMachineRunning" style="float:right" class="btn btn-info btn-sm btn-round" data-toggle="modal" data-target="#myModal" onclick="clearData()"><i class="ft-plus"></i> Add New Machine Running</button>
+                                        </div>
+                                        <h4 class="form-section"><i class="ft-user"></i> List of Machine Running</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card-content collapse show vtpl-grid-align">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped" id="machineRunningtbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>MachineId</th>
+                                                                    <th>Days Run</th>
+                                                                    <th>Hours Run</th>
+                                                                    <th>Qty Produced</th>
+                                                                    <th style="width: 25px;">Edit</th>
+                                                                    <th style="width: 25px;">Delete</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/MachineRunning.js"></script>
+}

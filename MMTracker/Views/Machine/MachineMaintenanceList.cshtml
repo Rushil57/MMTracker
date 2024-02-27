@@ -1,0 +1,131 @@
+﻿@model MMTracker.Models.Machine_MaintenanceViewModel
+@{
+    ViewData["Title"] = "Machine Maintenance List";
+}
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+
+            <div class="row">
+                @*===================*@
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <h4 style="float:left" class="modal-title"><strong>Machine Maintenance</strong></h4>
+                    </div>
+                </div>
+                <div id="myModal" class="modal fade" role="dialog" tabindex='-1'>
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><i class="ft-user"></i> Machine Maintenance </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="projectinput8">Machine</label>
+                                                <select id="ddlMachine" class="form-control">
+                                                    <option value="-1">---Select---</option>
+                                                    @foreach (var item in Model.MachineList)
+                                                    {
+                                                        <option value="@item.MachineId">
+                                                            @item.MachineId
+                                                        </option>
+                                                    }
+                                                </select>
+                                                @*<input type="hidden" id="hdnMachineId" />*@
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="projectinput8">Maintenance</label>
+                                                <select id="ddlMaintenance" class="form-control">
+                                                    <option value="-1">---Select---</option>
+                                                    @foreach (var item in Model.MaintenanceList)
+                                                    {
+                                                    <option value="@item.MaintenanceId">
+                                                        @item.MaintenanceName
+                                                    </option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="projectinput1">Maintenance Frequency Days</label>
+                                                <input type="text" id="txtMaintenanceFrequencyDays" class="form-control">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="projectinput8">Maintenance Frequency Hours</label>
+                                                <input type="text" id="txtMaintenanceFrequencyHours" class="form-control" max="6">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="projectinput8">Maintenance Frequency Qty</label>
+                                                <input type="text" id="txtMaintenanceFrequencyQty" class="form-control" max="6">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-warning mr-1" data-dismiss="modal">Close</button>
+                                    <button type="button" id="btnSaveMachineMaintenance" class="btn btn-primary" onclick="saveMachineMaintenance()">
+                                        <i class="la la-check-square-o"></i> Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                @*================*@
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <form class="form">
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <button type="button" id="btnAddMachineMaintenance" style="float:right" class="btn btn-info btn-sm btn-round" data-toggle="modal" data-target="#myModal" onclick="clearData()"><i class="ft-plus"></i> Add New Machine Maintenance</button>
+                                        </div>
+                                        <h4 class="form-section"><i class="ft-user"></i> List of Machine Maintenance</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card-content collapse show vtpl-grid-align">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped" id="machineMaintenancetbl">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>MachineId</th>
+                                                                    <th>Maintenance Frequency Days</th>
+                                                                    <th>Maintenance Frequency Qty</th>
+                                                                    <th style="width: 25px;">Edit</th>
+                                                                    <th style="width: 25px;">Delete</th>
+                                                                </tr>
+                                                            </thead>
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/MachineMaintenance.js"></script>
+}
